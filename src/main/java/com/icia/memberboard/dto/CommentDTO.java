@@ -8,4 +8,10 @@ import lombok.ToString;
 @Getter
 @ToString
 public class CommentDTO {
+    private Long id;
+    private String commentWriter;
+    private String commentContents;
+    private Long boardId;
+    private String createdAt;
+    private String updatedAt;
 }
