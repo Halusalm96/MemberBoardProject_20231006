@@ -1,5 +1,6 @@
 package com.icia.memberboard.entity;
 
+import com.icia.memberboard.dto.MemberDTO;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,4 +25,14 @@ public class MemberEntity {
     private String memberMobile;
     @Column
     private String memberBirth;
+
+    public static MemberEntity toSaveEntity(MemberDTO memberDTO){
+        MemberEntity memberEntity = new MemberEntity();
+        memberEntity.setMemberEmail(memberDTO.getMemberEmail());
+        memberEntity.setMemberPassword(memberDTO.getMemberPassword());
+        memberEntity.setMemberName(memberDTO.getMemberName());
+        memberEntity.setMemberMobile(memberDTO.getMemberMobile());
+        memberEntity.setMemberBirth(memberDTO.getMemberBirth());
+        return memberEntity;
+    }
 }

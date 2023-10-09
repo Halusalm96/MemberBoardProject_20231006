@@ -9,7 +9,15 @@
 
 <div class="container">
   <!-- 화면에 보여질 내용이 들어갈 부분 -->
+  <form action="/member/save" method="post">
+    <input type="email" name="memberEmail" placeholder="이메일을 입력하세요."> <br>
 
+    <input type="text" name="memberPassword" placeholder="비밀번호를 입력하세요."> <br>
+    <input type="text" name="memberName" placeholder="이름을 입력하세요."> <br>
+    <input type="text" name="memberMobile" placeholder="전화번호를 입력하세요."> <br>
+    <input type="text" name="memberBirth" placeholder="생년월일을 선택하세요."> <br>
+    <input type="submit" value="회원가입">
+  </form>
 </div>
 
 <div th:replace="~{component/footer :: footer}"></div>
