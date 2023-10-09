@@ -1,7 +1,7 @@
 # server port
-# server.port=8086
+# server.port=8089
 server:
-  port: 8086
+  port: 8089
 
 # data base
 spring:

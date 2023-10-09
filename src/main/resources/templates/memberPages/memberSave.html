@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:replace="~{component/config :: config}"></th:block>
+  <th:block th:replace="~{component/config :: config}"></th:block>
 </head>
 <body>
 <div th:replace="~{component/header :: header}"></div>
 <div th:replace="~{component/nav :: nav}"></div>
 
 <div class="container">
-    <!-- 화면에 보여질 내용이 들어갈 부분 -->
-    <a href="/member/save">회원가입</a>
-    <a href="/member/login">로그인</a>
-    <a href="/board/list">글목록</a>
+  <!-- 화면에 보여질 내용이 들어갈 부분 -->
+
 </div>
 
 <div th:replace="~{component/footer :: footer}"></div>
