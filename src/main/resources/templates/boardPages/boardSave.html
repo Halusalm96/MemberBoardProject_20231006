@@ -9,10 +9,13 @@
 
 <div class="container">
   <!-- 화면에 보여질 내용이 들어갈 부분 -->
-
+  <form action="/board/save" method="post" enctype="multipart/form-data">
+    <input type="text" name="boardWriter" th:value="${session.loginEmail}" readonly>
+    <input type="text" name="boardTitle" placeholder="제목">
+    <textarea name="boardContents" placeholder="내용을 입력하세요"></textarea>
+    <input type="submit" value="등록">
+  </form>
 </div>
-
 <div th:replace="~{component/footer :: footer}"></div>
-
 </body>
 </html>

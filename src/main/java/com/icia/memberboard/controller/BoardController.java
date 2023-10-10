@@ -1,12 +1,15 @@
 package com.icia.memberboard.controller;
 
 import com.icia.memberboard.dto.BoardDTO;
+import com.icia.memberboard.dto.MemberDTO;
 import com.icia.memberboard.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -29,6 +32,16 @@ public class BoardController {
         model.addAttribute("page", page);
         model.addAttribute("type", type);
         model.addAttribute("q", q);
+        return "/boardPages/boardList";
+    }
+
+    @GetMapping("/board/save")
+    public String boardSave(){
+        return "/boardPages/boardSave";
+    }
+    @PostMapping("/board/save")
+    public String save(@ModelAttribute BoardDTO boardDTO) throws Exception  {
+        boardService.save(boardDTO);
         return "/boardPages/boardList";
     }
 }

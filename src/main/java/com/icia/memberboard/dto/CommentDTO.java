@@ -1,11 +1,10 @@
 package com.icia.memberboard.dto;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import com.icia.board.entity.CommentEntity;
+import lombok.*;
 
-@Setter
 @Getter
+@Setter
 @ToString
 public class CommentDTO {
     private Long id;
@@ -14,4 +13,15 @@ public class CommentDTO {
     private Long boardId;
     private String createdAt;
     private String updatedAt;
+
+    public static CommentDTO toDTO(CommentEntity commentEntity) {
+        CommentDTO commentDTO = new CommentDTO();
+        commentDTO.setId(commentEntity.getId());
+        commentDTO.setCommentWriter(commentEntity.getCommentWriter());
+        commentDTO.setCommentContents(commentEntity.getCommentContents());
+        commentDTO.setBoardId(commentEntity.getBoardEntity().getId());
+//        commentDTO.setCreatedAt(UtilClass.dateTimeFormat(commentEntity.getCreatedAt()));
+//        commentDTO.setUpdatedAt(UtilClass.dateTimeFormat(commentEntity.getUpdatedAt()));
+        return commentDTO;
+    }
 }
