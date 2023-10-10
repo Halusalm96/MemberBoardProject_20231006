@@ -22,5 +22,8 @@ public class BoardEntity extends BaseEntity{
     private String boardContents;
     @Column
     private int boardHits;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id", referencedColumnName = "id")
+    private MemberEntity memberEntity;
 
 }
