@@ -6,15 +6,9 @@
 <body>
 <div th:replace="~{component/header :: header}"></div>
 <div th:replace="~{component/nav :: nav}"></div>
-
-<div class="container">
-    <!-- 화면에 보여질 내용이 들어갈 부분 -->
-    <a href="/member/save">회원가입</a>
-    <a href="/member/login">로그인</a>
-    <a href="/board/list">글목록</a>
-</div>
-
+<a href="/member/save">회원가입</a>
+<a href="/member/login">로그인</a>
+<a href="/member/list">게시판</a>
 <div th:replace="~{component/footer :: footer}"></div>
-
 </body>
 </html>
