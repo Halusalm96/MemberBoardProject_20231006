@@ -46,17 +46,17 @@ public class MemberController {
         boolean result = memberService.findByMemberEmailAndMemberPassword(memberDTO);
         if(result){
             session.setAttribute("loginEmail", memberDTO.getMemberEmail());
-            session.setAttribute("member",memberDTO.getId());
             return "/memberPages/memberMain";
         }else {
             return "/memberPages/memberLogin";
         }
     }
-    @PostMapping("/member/detail/{id}")
-    public String  memberDetail(Model model,  @PathVariable Long id) {
+    @GetMapping("/member/detail/{loginEmail}")
+    public String  memberDetail(Model model,@PathVariable("loginEmail") String loginEmail) {
+        System.out.println(loginEmail);
         try {
-            MemberDTO memberDTO = memberService.findById(id);
-            model.addAttribute("member", memberDTO);
+            MemberDTO memberDTO1 = memberService.findByMemberEmail(loginEmail);
+            model.addAttribute("member", memberDTO1);
             return "memberPages/memberDetail";
         } catch (Exception e) {
             return "/NotFound";
@@ -66,5 +66,22 @@ public class MemberController {
     public String logout(HttpSession session) {
         session.removeAttribute("loginEmail");
         return "/index";
+    }
+    @GetMapping("/member/update/{id}")
+    public String  detailAxios(@PathVariable("id") Long id, Model model) {
+        MemberDTO memberDTO = memberService.findById(id);
+        model.addAttribute("member",memberDTO);
+        return "/memberPages/memberUpdate";
+    }
+    @DeleteMapping("/member/{id}")
+    public ResponseEntity delete(@PathVariable("id") Long id) {
+        memberService.delete(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    @PutMapping("/member/{id}")
+    public ResponseEntity update(@RequestBody MemberDTO memberDTO, HttpSession session) {
+        memberService.update(memberDTO);
+        session.removeAttribute("loginEmail");
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

@@ -30,11 +30,11 @@
     <script th:inline="javascript">
         const loginArea = document.getElementById("login-area");
         const loginEmail = [[${session.loginEmail}]];
-        console.log(loginEmail);
+        // console.log(loginEmail);
         // console.log(loginEmail.length);
         if (loginEmail != null) {
             // 로그인 했음
-            loginArea.innerHTML = "<a href=@{|/member/detail/${member.id}|}>마이페이지</a>" +
+            loginArea.innerHTML = "<a href='/member/detail/" + loginEmail + "'>마이페이지</a>" +
                 "<a href='/logout'>로그아웃</a>";
         } else {
             // 로그인 안했음

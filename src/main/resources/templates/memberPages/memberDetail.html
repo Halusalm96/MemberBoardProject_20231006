@@ -26,14 +26,42 @@
         </tr>
         <tr>
             <th>생년월일</th>
-            <td th:data="${member.memberBirth}"></td>
+            <td th:text="${member.memberBirth}"></td>
         </tr>
         <tr>
             <th>전화번호</th>
             <td th:text="${member.memberMobile}"></td>
         </tr>
+        <tr>
+            <th>가입날짜</th>
+            <td th:text="${member.createdAt}"></td>
+        </tr>
+        <tr>
+            <button th:onclick="member_detail([[${member.id}]])">수정</button>
+        </tr>
+        <tr>
+            <button th:onclick="member_delete([[${member.id}]])">탈퇴</button>
+        </tr>
     </table>
 </div>
 <div th:replace="~{component/footer :: footer}"></div>
 </body>
+<script th:inline="javascript">
+    const member_detail = (id) => {
+        location.href = `/member/update/${id}`;
+    }
+
+    const member_delete = (id) => {
+        // location.href = `/member/delete/${id}`;
+        axios({
+            method: "delete",
+            url: `/member/${id}`
+        }).then(res => {
+            alert("삭제 성공");
+            location.href = "/";
+        }).catch(err => {
+            alert("삭제 실패");
+        });
+    }
+</script>
 </html>

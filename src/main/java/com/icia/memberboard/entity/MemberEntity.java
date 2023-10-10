@@ -23,9 +23,9 @@ public class MemberEntity extends BaseEntity {
     private String memberPassword;
     @Column(nullable = false, length = 50)
     private String memberName;
-    @Column
+    @Column(length = 30)
     private String memberMobile;
-    @Column
+    @Column(length = 30)
     private String memberBirth;
 
     @OneToMany(mappedBy = "memberEntity", cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.LAZY)
@@ -37,6 +37,16 @@ public class MemberEntity extends BaseEntity {
         memberEntity.setMemberName(memberDTO.getMemberName());
         memberEntity.setMemberMobile(memberDTO.getMemberMobile());
         memberEntity.setMemberBirth(memberDTO.getMemberBirth());
+        return memberEntity;
+    }
+    public static MemberEntity toUpdateEntity(MemberDTO memberDTO) {
+        MemberEntity memberEntity = new MemberEntity();
+        memberEntity.setId(memberDTO.getId());
+        memberEntity.setMemberEmail(memberDTO.getMemberEmail());
+        memberEntity.setMemberPassword(memberDTO.getMemberPassword());
+        memberEntity.setMemberName(memberDTO.getMemberName());
+        memberEntity.setMemberBirth(memberDTO.getMemberBirth());
+        memberEntity.setMemberMobile(memberDTO.getMemberMobile());
         return memberEntity;
     }
 }

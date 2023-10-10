@@ -13,29 +13,36 @@ import java.util.Optional;
 public class MemberService {
 
     private final MemberRepository memberRepository;
+
     public void save(MemberDTO memberDTO) {
         MemberEntity memberEntity = MemberEntity.toSaveEntity(memberDTO);
         memberRepository.save(memberEntity);
     }
-
     public boolean checkEmail(String memberEmail) {
         Optional<MemberEntity> optionalMemberEntity = memberRepository.findByMemberEmail(memberEmail);
         if (optionalMemberEntity.isEmpty()) {
             return true;
-        }else {
+        } else {
             return false;
         }
     }
-
     public boolean findByMemberEmailAndMemberPassword(MemberDTO memberDTO) {
         Optional<MemberEntity> optionalMemberEntity = memberRepository.findByMemberEmailAndMemberPassword(memberDTO.getMemberEmail(), memberDTO.getMemberPassword());
         if (optionalMemberEntity.isPresent()) {
             return true;
-        }else {
+        } else {
             return false;
         }
     }
-
+    public MemberDTO findByMemberEmail(String memberEmail) {
+        Optional<MemberEntity> memberRepositoryById = memberRepository.findByMemberEmail(memberEmail);
+        if (memberRepositoryById.isPresent()) {
+            MemberEntity memberEntity = memberRepositoryById.get();
+            return MemberDTO.toMemberList(memberEntity);
+        } else {
+            return null;
+        }
+    }
     public MemberDTO findById(Long id) {
         Optional<MemberEntity> memberRepositoryById = memberRepository.findById(id);
         if (memberRepositoryById.isPresent()) {
@@ -45,23 +52,12 @@ public class MemberService {
             return null;
         }
     }
-
-    public boolean memberDetail(String memberEmail) {
-        Optional<MemberEntity> optionalMemberEntity = memberRepository.findByMemberEmail(memberEmail);
-        if (optionalMemberEntity.isEmpty()) {
-            return true;
-        } else {
-            return false;
-        }
+    public void delete(Long id) {
+        memberRepository.deleteById(id);
     }
 
-    public MemberDTO findByEmail(String memberEmail) {
-        Optional<MemberEntity> memberRepositoryById = memberRepository.findByMemberEmail(memberEmail);
-        if (memberRepositoryById.isPresent()) {
-            MemberEntity memberEntity = memberRepositoryById.get();
-            return MemberDTO.toMemberList(memberEntity);
-        } else {
-            return null;
-        }
+    public void update(MemberDTO memberDTO) {
+        MemberEntity memberEntity = MemberEntity.toUpdateEntity(memberDTO);
+        memberRepository.save(memberEntity);
     }
 }
