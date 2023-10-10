@@ -35,4 +35,33 @@ public class MemberService {
             return false;
         }
     }
+
+    public MemberDTO findById(Long id) {
+        Optional<MemberEntity> memberRepositoryById = memberRepository.findById(id);
+        if (memberRepositoryById.isPresent()) {
+            MemberEntity memberEntity = memberRepositoryById.get();
+            return MemberDTO.toMemberList(memberEntity);
+        } else {
+            return null;
+        }
+    }
+
+    public boolean memberDetail(String memberEmail) {
+        Optional<MemberEntity> optionalMemberEntity = memberRepository.findByMemberEmail(memberEmail);
+        if (optionalMemberEntity.isEmpty()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public MemberDTO findByEmail(String memberEmail) {
+        Optional<MemberEntity> memberRepositoryById = memberRepository.findByMemberEmail(memberEmail);
+        if (memberRepositoryById.isPresent()) {
+            MemberEntity memberEntity = memberRepositoryById.get();
+            return MemberDTO.toMemberList(memberEntity);
+        } else {
+            return null;
+        }
+    }
 }

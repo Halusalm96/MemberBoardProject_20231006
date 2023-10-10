@@ -46,9 +46,25 @@ public class MemberController {
         boolean result = memberService.findByMemberEmailAndMemberPassword(memberDTO);
         if(result){
             session.setAttribute("loginEmail", memberDTO.getMemberEmail());
+            session.setAttribute("member",memberDTO.getId());
             return "/memberPages/memberMain";
         }else {
             return "/memberPages/memberLogin";
         }
+    }
+    @PostMapping("/member/detail/{id}")
+    public String  memberDetail(Model model,  @PathVariable Long id) {
+        try {
+            MemberDTO memberDTO = memberService.findById(id);
+            model.addAttribute("member", memberDTO);
+            return "memberPages/memberDetail";
+        } catch (Exception e) {
+            return "/NotFound";
+        }
+    }
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.removeAttribute("loginEmail");
+        return "/index";
     }
 }
