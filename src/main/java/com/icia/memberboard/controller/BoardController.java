@@ -42,6 +42,6 @@ public class BoardController {
     @PostMapping("/board/save")
     public String save(@ModelAttribute BoardDTO boardDTO) throws Exception  {
         boardService.save(boardDTO);
-        return "/boardPages/boardList";
+        return "/memberPages/memberMain";
     }
 }

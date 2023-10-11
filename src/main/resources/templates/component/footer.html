@@ -1,15 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
 <div th:fragment="footer" id="footer">
+  <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+      #f {
+        background-color: #333; /* 푸터 배경색 (어두운 회색) */
+        color: #ffffff; /* 푸터 텍스트 색상 (흰색) */
+        text-align: center; /* 텍스트 중앙 정렬 */
+        padding: 20px; /* 푸터 패딩 */
+      }
+    </style>
+  </head>
+
+  <body>
+  <div id="f">
+
+  </div>
   <script>
     const date = new Date();
-    const footer = document.getElementById("footer");
-    footer.innerHTML = "<p class='text-center'>&copy;  " + date.getFullYear() + "&nbsp; 회원제 게시판 시스템.</p>";
+    const footer = document.getElementById("f");
+    footer.innerHTML = "<p>&copy;  " + date.getFullYear() + "&nbsp; 회원제 게시판 시스템.</p>";
   </script>
 </div>
 </body>

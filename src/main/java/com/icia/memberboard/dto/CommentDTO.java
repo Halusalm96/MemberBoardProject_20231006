@@ -1,6 +1,6 @@
 package com.icia.memberboard.dto;
 
-import com.icia.board.entity.CommentEntity;
+import com.icia.memberboard.entity.CommentEntity;
 import lombok.*;
 
 @Getter

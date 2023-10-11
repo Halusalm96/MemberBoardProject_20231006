@@ -1,8 +1,60 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
   <th:block th:replace="~{component/config :: config}"></th:block>
+  <style>
+    /* 추가한 CSS 스타일링 */
+    body {
+      padding-top: 60px; /* 네비게이션 바와 겹치지 않도록 body의 padding-top 설정 */
+      background-color: #333; /* 전체 배경색 어두운 회색으로 설정 */
+      color: white; /* 전체 텍스트 색상을 흰색으로 설정 */
+    }
+
+    .navbar {
+      background-color: #222; /* 네비게이션 바 배경색 (더 어두운 회색) */
+    }
+
+    .navbar-nav .nav-link {
+      color: white; /* 네비게이션 바 링크 텍스트 색상 */
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: #007bff; /* 네비게이션 바 링크 호버시 텍스트 색상 변경 (파란색) */
+    }
+
+    .navbar-toggler-icon {
+      background-color: white; /* 햄버거 아이콘 색상 */
+    }
+
+    .container {
+      background-color: #222; /* 입력 폼 컨테이너 배경색 (더 어두운 회색) */
+      padding: 20px; /* 컨테이너 패딩 설정 */
+      border-radius: 10px; /* 컨테이너 둥근 테두리 설정 */
+      margin-top: 20px; /* 컨테이너 위쪽 간격 설정 */
+    }
+
+    .container input[type="text"],
+    .container textarea,
+    .container input[type="submit"] {
+      margin-bottom: 10px; /* 입력 필드 간격 설정 */
+    }
+
+    .container input[type="submit"] {
+      background-color: #007bff; /* 버튼 배경색 (파란색) */
+      color: white; /* 버튼 텍스트 색상 (흰색) */
+      border: none; /* 버튼 테두리 제거 */
+      padding: 10px 20px; /* 버튼 패딩 설정 */
+      border-radius: 5px; /* 버튼 둥근 테두리 설정 */
+      cursor: pointer; /* 포인터 커서 설정 */
+    }
+
+    .container input[type="submit"]:hover {
+      background-color: #0056b3; /* 호버시 배경색 변경 (더 진한 파란색) */
+    }
+  </style>
 </head>
+
 <body>
 <div th:replace="~{component/header :: header}"></div>
 <div th:replace="~{component/nav :: nav}"></div>
@@ -16,6 +68,8 @@
     <input type="submit" value="등록">
   </form>
 </div>
+
 <div th:replace="~{component/footer :: footer}"></div>
 </body>
+
 </html>

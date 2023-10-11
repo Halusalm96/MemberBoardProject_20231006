@@ -1,6 +1,6 @@
-package com.icia.board.entity;
+package com.icia.memberboard.entity;
 
-import com.icia.board.dto.CommentDTO;
+import com.icia.memberboard.dto.CommentDTO;
 import com.icia.memberboard.entity.BoardEntity;
 import lombok.AccessLevel;
 import lombok.Getter;

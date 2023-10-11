@@ -1,12 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-  <meta charset="UTF-8">
-  <title>Board Project</title>
-</head>
-<body>
 <div th:fragment="header" id="header">
-  <h1>SpringBoot Board Project</h1>
-</div>
-</body>
+  <head>
+    <meta charset="UTF-8">
+    <title>Board Project</title>
+    <style>
+      #header {
+        background-color: #333; /* 헤더 배경색 (어두운 회색) */
+        color: #ffffff; /* 헤더 텍스트 색상 (흰색) */
+        text-align: center; /* 텍스트 중앙 정렬 */
+        padding: 20px; /* 헤더 패딩 */
+      }
+
+      #header h1 {
+        margin: 0; /* h1 요소의 상하 마진 제거 */
+      }
+    </style>
+  </head>
+  <body>
+    <h1>SpringBoot Board Project</h1>
+  </div>
+  </body>
 </html>
