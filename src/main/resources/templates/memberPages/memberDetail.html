@@ -1,8 +1,48 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <th:block th:replace="~{component/config :: config}"></th:block>
+    <style>
+        body {
+            background-color: #1a1a1a; /* 어두운 배경색 */
+            color: #ffffff; /* 텍스트 색상 */
+        }
+
+        .container {
+            background-color: #333333; /* 컨테이너 배경색 */
+            padding: 20px;
+            border-radius: 10px; /* 모서리 둥글게 */
+        }
+
+        table {
+            color: #ffffff; /* 테이블 텍스트 색상 */
+        }
+
+        th {
+            background-color: #555555; /* 테이블 헤더 배경색 */
+        }
+
+        .button {
+            background-color: #4CAF50; /* 버튼 배경색 */
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px; /* 버튼 둥글게 */
+        }
+
+        .button-danger {
+            background-color: #ff3333; /* 삭제 버튼 배경색 */
+        }
+    </style>
 </head>
+
 <body>
 <div th:replace="~{component/header :: header}"></div>
 <div th:replace="~{component/nav :: nav}"></div>
@@ -36,16 +76,13 @@
             <th>가입날짜</th>
             <td th:text="${member.createdAt}"></td>
         </tr>
-        <tr>
-            <button th:onclick="member_detail([[${member.id}]])">수정</button>
-        </tr>
-        <tr>
-            <button th:onclick="member_delete([[${member.id}]])">탈퇴</button>
-        </tr>
     </table>
+    <button class="button" onclick="member_detail([[${member.id}]])">수정</button>
+    <button class="button button-danger" onclick="member_delete([[${member.id}]])">탈퇴</button>
 </div>
 <div th:replace="~{component/footer :: footer}"></div>
 </body>
+
 <script th:inline="javascript">
     const member_detail = (id) => {
         location.href = `/member/update/${id}`;

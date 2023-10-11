@@ -11,10 +11,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.NoSuchElementException;
 
 @Service
 @RequiredArgsConstructor
@@ -76,5 +78,24 @@ public class BoardService {
             }
             return savedEntity.getId();
         }
+    }
+    @Transactional
+    public void increaseHits(Long id) {
+        boardRepository.increaseHits(id);
+    }
+
+    public void delete(Long id) {
+        boardRepository.deleteById(id);
+    }
+
+    public void update(BoardDTO boardDTO) {
+        BoardEntity boardEntity = BoardEntity.toUpdateEntity(boardDTO);
+        boardRepository.save(boardEntity);
+    }
+
+    @Transactional
+    public BoardDTO findById(Long id) {
+        BoardEntity boardEntity = boardRepository.findById(id).orElseThrow(() -> new NoSuchElementException());
+        return BoardDTO.toBoardDTO(boardEntity);
     }
 }
