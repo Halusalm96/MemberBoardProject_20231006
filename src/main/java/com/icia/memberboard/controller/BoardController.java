@@ -52,7 +52,7 @@ public class BoardController {
     }
     @GetMapping("/board/{id}")
     public String findById(@PathVariable("id") Long id, Model model,
-                           @RequestParam(value = "page", required = false, defaultValue = "1") int page,
+                              @RequestParam(value = "page", required = false, defaultValue = "1") int page,
                            @RequestParam(value = "type", required = false, defaultValue = "boardTitle") String type,
                            @RequestParam(value = "q", required = false, defaultValue = "") String q) {
         boardService.increaseHits(id);
